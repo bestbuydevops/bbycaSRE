@@ -131,7 +131,7 @@ pipeline {
     
     //Notification on Success
     success {
-      slackSend (color: '#00FF00', message: "@channel *SUCCESSFUL*: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.RUN_DISPLAY_URL})")
+      slackSend (color: '#00FF00', message: "@channel *SUCCESSFUL*: Job ${stage} '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.RUN_DISPLAY_URL})")
     }
     
     //Notification on failure
