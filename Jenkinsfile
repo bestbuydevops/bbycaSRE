@@ -23,8 +23,9 @@ pipeline {
         }
 
         //Setting Stage Environments
-        stage = "CI - Unit Test"
-
+        script {
+          stage = "CI - Unit Test"
+        }
 
         sh "echo ${stage}"
 
@@ -65,7 +66,16 @@ pipeline {
     // CI -  Docker Build
     stage('CI - Docker Build'){
       steps {
+
+        //Setting Stage Environments
+        script {
+          stage = "CI - Docker Build"
+        }
+
+        // Printing Info For Easy Trace on Jenkimns
         sh "printf 'CI - Docker Build \n\n'" 
+
+        //Building the Dockerfile locally
         script {
           def customImage = docker.build("bestbuydevops/bbycasre_samuelbaruffi:latest")
         }
@@ -75,7 +85,16 @@ pipeline {
     // CI - Push Image To DockerHub
     stage('CI - Push To DockerHub'){
       steps {
+
+        //Setting Stage Environments
+        script {
+          stage = "CI - Push To DockerHub"
+        }
+
+        // Printing Info For Easy Trace on Jenkimns
         sh "printf 'CI - Push TO DockerHub  \n\n'" 
+
+        //Building the Dockerfile locally
         withDockerRegistry([credentialsId: 'dockerhub', url: ""]) {
           sh "docker push bestbuydevops/bbycasre_samuelbaruffi:latest"
         }
@@ -85,6 +104,12 @@ pipeline {
     // CD - Deploy Containers
     stage('CD - Deploy Containers'){
       steps {
+
+        //Setting Stage Environments
+        script {
+          stage = "CD - Deploy Containers"
+        }
+
         // Deploying Dev Container
         sh "printf 'CD - Deploy DEV Container on Port 8091 \n\n'" 
         sh 'docker stop bestbuydevops-dev || true && docker rm -f bestbuydevops-dev || true'
@@ -122,7 +147,7 @@ pipeline {
     
     //Notification on failure
     failure {
-      slackSend (color: '#FF0000', message: "@channel *FAILED*: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.RUN_DISPLAY_URL})")
+      slackSend (color: '#FF0000', message: "@channel *FAILED*: Job on stage ${stage}  '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.RUN_DISPLAY_URL})")
     }
   }
 }
