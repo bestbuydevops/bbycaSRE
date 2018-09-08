@@ -101,7 +101,7 @@ pipeline {
         sh "printf 'CD - Deploy PROD Container on Port 8094 \n\n'" 
         sh 'docker stop bestbuydevops-prod || true && docker rm -f bestbuydevops-prod || true'
         sh "docker run -dti -p 8094:8094 -e ENV=PROD -e PORT=8094 --name bestbuydevops-prod bestbuydevops/bbycasre_samuelbaruffi:latest"
-        slackSend (color: '#00FF00', message: "@channel *DEPLOYED:* Best Buy App (Samuel Baruffi) (ENV=PROD) (http://e${public_dns}:8094)")
+        slackSend (color: '#00FF00', message: "@channel *DEPLOYED:* Best Buy App (Samuel Baruffi) (ENV=PROD) (http://${public_dns}:8094)")
       }      
     }
   }
