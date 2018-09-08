@@ -9,7 +9,7 @@ pipeline {
   
   //Setting Global Environments
    environment { 
-      DNS = "$( curl -s http://169.254.169.254/latest/meta-data/public-hostname)"
+      DNS = sh "curl -s http://169.254.169.254/latest/meta-data/public-hostname"
             }
   
   //CI_CD Pipeline Stages
