@@ -7,13 +7,14 @@ pipeline {
   
   //Specifying Tools 
   tools {nodejs "node"}
-  
+
   //CI_CD Pipeline Stages
   stages {
     
     // CI - Unit Test Of The Node App 
     stage('CI - Unit Test') {
       steps {
+
         // First Slack Notification
         slackSend (color: '#00FF00', message: "@channel *STARTED*: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.RUN_DISPLAY_URL})")
         
@@ -21,13 +22,6 @@ pipeline {
         script {
           public_dns = sh(script: 'curl -s http://169.254.169.254/latest/meta-data/public-hostname', returnStdout: true)
         }
-
-        //Setting Stage Environments
-        script {
-          stage = "CI - Unit Test"
-        }
-
-        sh "echo ${stage}"
 
         // Installing Node Dependencies Packages for Unit Test
         sh 'npm install'
@@ -67,11 +61,6 @@ pipeline {
     stage('CI - Docker Build'){
       steps {
 
-        //Setting Stage Environments
-        script {
-          stage = "CI - Docker Build"
-        }
-
         // Printing Info For Easy Trace on Jenkimns
         sh "printf 'CI - Docker Build \n\n'" 
 
@@ -85,11 +74,6 @@ pipeline {
     // CI - Push Image To DockerHub
     stage('CI - Push To DockerHub'){
       steps {
-
-        //Setting Stage Environments
-        script {
-          stage = "CI - Push To DockerHub"
-        }
 
         // Printing Info For Easy Trace on Jenkimns
         sh "printf 'CI - Push TO DockerHub  \n\n'" 
@@ -105,34 +89,29 @@ pipeline {
     stage('CD - Deploy Containers'){
       steps {
 
-        //Setting Stage Environments
-        script {
-          stage = "CD - Deploy Containers"
-        }
-
         // Deploying Dev Container
         sh "printf 'CD - Deploy DEV Container on Port 8091 \n\n'" 
         sh 'docker stop bestbuydevops-dev || true && docker rm -f bestbuydevops-dev || true'
         sh "docker run -dti -p 8091:8091 -e ENV=DEV -e PORT=8091 --name bestbuydevops-dev bestbuydevops/bbycasre_samuelbaruffi:latest"
-        slackSend (color: '#00FF00', message: "@channel *DEPLOYED:* Best Buy App (Samuel Baruffi) (ENV=DEV) (http://${public_dns}:8091)")
+        slackSend (color: '#00FF00', message: "@channel *DEV APP DEPLOYED:* Best Buy App (Samuel Baruffi) (ENV=DEV) (http://${public_dns}:8091)")
 
         // Deploying Test Container
         sh "printf 'CD - Deploy TEST Container on Port 8092 \n\n'" 
         sh 'docker stop bestbuydevops-test || true && docker rm -f bestbuydevops-test || true'
         sh "docker run -dti -p 8092:8092 -e ENV=TEST -e PORT=8092 --name bestbuydevops-test bestbuydevops/bbycasre_samuelbaruffi:latest"
-        slackSend (color: '#00FF00', message: "@channel *DEPLOYED:* Best Buy App (Samuel Baruffi) (ENV=TEST) (http://${public_dns}:8092)")
+        slackSend (color: '#00FF00', message: "@channel *TEST APP DEPLOYED:* Best Buy App (Samuel Baruffi) (ENV=TEST) (http://${public_dns}:8092)")
 
         // Deploying DR Container
         sh "printf 'CD - Deploy DR Container on Port 8093 \n\n'" 
         sh 'docker stop bestbuydevops-dr || true && docker rm -f bestbuydevops-dr || true'
         sh "docker run -dti -p 8093:8093 -e ENV=DR -e PORT=8093 --name bestbuydevops-dr bestbuydevops/bbycasre_samuelbaruffi:latest"
-        slackSend (color: '#00FF00', message: "@channel *DEPLOYED:* Best Buy App (Samuel Baruffi) (ENV=DR) (http://${public_dns}:8093)")
+        slackSend (color: '#00FF00', message: "@channel *DR APP DEPLOYED:* Best Buy App (Samuel Baruffi) (ENV=DR) (http://${public_dns}:8093)")
 
         // Deploying Prod Container
         sh "printf 'CD - Deploy PROD Container on Port 8094 \n\n'" 
         sh 'docker stop bestbuydevops-prod || true && docker rm -f bestbuydevops-prod || true'
         sh "docker run -dti -p 8094:8094 -e ENV=PROD -e PORT=8094 --name bestbuydevops-prod bestbuydevops/bbycasre_samuelbaruffi:latest"
-        slackSend (color: '#00FF00', message: "@channel *DEPLOYED:* Best Buy App (Samuel Baruffi) (ENV=PROD) (http://${public_dns}:8094)")
+        slackSend (color: '#00FF00', message: "@channel *PROD APP DEPLOYED:* Best Buy App (Samuel Baruffi) (ENV=PROD) (http://${public_dns}:8094)")
       }      
     }
    }
@@ -142,12 +121,12 @@ pipeline {
     
     //Notification on Success
     success {
-      slackSend (color: '#00FF00', message: "@channel *SUCCESSFUL*: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.RUN_DISPLAY_URL})")
+      slackSend (color: '#00FF00', message: "@channel *JOB SUCCESSFUL*: '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.RUN_DISPLAY_URL})")
     }
     
     //Notification on failure
     failure {
-      slackSend (color: '#FF0000', message: "@channel *FAILED*: Job on stage ${stage}  '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.RUN_DISPLAY_URL})")
+      slackSend (color: '#FF0000', message: "@channel *JOB FAILED*: '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.RUN_DISPLAY_URL})")
     }
   }
 }
