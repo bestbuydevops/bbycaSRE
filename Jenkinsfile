@@ -22,7 +22,6 @@ pipeline {
           public_dns = sh(script: 'curl -s http://169.254.169.254/latest/meta-data/public-hostname', returnStdout: true)
         }
 
-
         // Installing Node Dependencies Packages for Unit Test
         sh 'npm install'
         sh 'npm install pm2 -g'
@@ -61,11 +60,6 @@ pipeline {
     stage('CI - Docker Build'){
       steps {
 
-        //Setting Stage Environments
-        script {
-          stage = "CI - Docker Build"
-        }
-
         // Printing Info For Easy Trace on Jenkimns
         sh "printf 'CI - Docker Build \n\n'" 
 
@@ -80,11 +74,6 @@ pipeline {
     stage('CI - Push To DockerHub'){
       steps {
 
-        //Setting Stage Environments
-        script {
-          stage = "CI - Push To DockerHub"
-        }
-
         // Printing Info For Easy Trace on Jenkimns
         sh "printf 'CI - Push TO DockerHub  \n\n'" 
 
@@ -98,11 +87,6 @@ pipeline {
     // CD - Deploy Containers
     stage('CD - Deploy Containers'){
       steps {
-
-        //Setting Stage Environments
-        script {
-          stage = "CD - Deploy Containers"
-        }
 
         // Deploying Dev Container
         sh "printf 'CD - Deploy DEV Container on Port 8091 \n\n'" 
@@ -141,7 +125,7 @@ pipeline {
     
     //Notification on failure
     failure {
-      slackSend (color: '#FF0000', message: "@channel *FAILED*: Job on stage ${stage}  '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.RUN_DISPLAY_URL})")
+      slackSend (color: '#FF0000', message: "@channel *FAILED*: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.RUN_DISPLAY_URL})")
     }
   }
 }
