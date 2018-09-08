@@ -2,6 +2,7 @@
 //DevOps Assignment - Best Buy
 
 pipeline {
+  //Use any Jenkins agent available
   agent any
   
   //Specifying Tools 
@@ -20,7 +21,13 @@ pipeline {
         script {
           public_dns = sh(script: 'curl -s http://169.254.169.254/latest/meta-data/public-hostname', returnStdout: true)
         }
-        
+
+        //Setting Stage Environments
+        script {
+          stage = "CI - Unit Test"
+        }
+
+        sh "echo ${stage}"
 
         // Installing Node Dependencies Packages for Unit Test
         sh 'npm install'
@@ -76,7 +83,7 @@ pipeline {
       }
     }
          
-    // CD - Deploy Container
+    // CD - Deploy Containers
     stage('CD - Deploy Containers'){
       steps {
         // Deploying Dev Container
@@ -118,7 +125,6 @@ pipeline {
     failure {
       slackSend (color: '#FF0000', message: "@channel *FAILED*: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.RUN_DISPLAY_URL})")
     }
-    
   }
 }
 
