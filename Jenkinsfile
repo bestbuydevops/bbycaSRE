@@ -23,9 +23,8 @@ pipeline {
         }
 
         //Setting Stage Environments
-        script {
-          stage = "CI - Unit Test"
-        }
+        stage = "CI - Unit Test"
+
 
         sh "echo ${stage}"
 
