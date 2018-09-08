@@ -16,6 +16,8 @@ pipeline {
         // First Slack Notification
         slackSend (color: '#00FF00', message: "@channel *STARTED*: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.RUN_DISPLAY_URL})")
 
+        sh 'env'
+        
         // Installing Node Dependencies Packages for Unit Test
         sh 'npm install'
         sh 'npm install pm2 -g'
@@ -56,9 +58,6 @@ pipeline {
         sh "printf 'CI - Docker Build \n\n'" 
         script {
           def customImage = docker.build("bestbuydevops/bbycasre_samuelbaruffi:latest")
-          customImage.inside {
-            sh 'cat bestbuy.ca.js'
-          }
         }
       }
     }
