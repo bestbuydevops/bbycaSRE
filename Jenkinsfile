@@ -7,6 +7,11 @@ pipeline {
   //Specifying Tools 
   tools {nodejs "node"}
   
+  //Setting Global Environments
+   environment { 
+      DNS = "$( curl -s http://169.254.169.254/latest/meta-data/public-hostname)"
+            }
+  
   //CI_CD Pipeline Stages
   stages {
     
@@ -16,7 +21,7 @@ pipeline {
         // First Slack Notification
         slackSend (color: '#00FF00', message: "@channel *STARTED*: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.RUN_DISPLAY_URL})")
 
-        sh 'env'
+         sh 'env'
         
         // Installing Node Dependencies Packages for Unit Test
         sh 'npm install'
