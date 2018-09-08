@@ -16,6 +16,12 @@ pipeline {
     
     // CI - Unit Test Of The Node App 
     stage('CI - Unit Test') {
+      
+      //Setting Stage Environment Variables
+      environment {
+        stage = "CI - Unit Test"
+      }
+      
       steps {
         // First Slack Notification
         slackSend (color: '#00FF00', message: "@channel *STARTED*: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.RUN_DISPLAY_URL})")
@@ -25,12 +31,8 @@ pipeline {
           public_dns = sh(script: 'curl -s http://169.254.169.254/latest/meta-data/public-hostname', returnStdout: true)
         }
 
-        environment {
-          stage = "CI - Unit Test"
-        }
-
         sh "echo ${stage}"
-        
+
         // Installing Node Dependencies Packages for Unit Test
         sh 'npm install'
         sh 'npm install pm2 -g'
