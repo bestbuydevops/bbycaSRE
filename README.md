@@ -1,2 +1,2 @@
-# devops-samuelbaruffi
-Best Buy CI/CD Assignment
+# bbycaSRE_samuelbaruffi
+Best Buy CI/CD Assignment - Samuel Baruffi
