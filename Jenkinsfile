@@ -8,6 +8,9 @@ pipeline {
   //Specifying Tools 
   tools {nodejs "node"}
   
+  
+
+
   //CI_CD Pipeline Stages
   stages {
     
@@ -22,6 +25,12 @@ pipeline {
           public_dns = sh(script: 'curl -s http://169.254.169.254/latest/meta-data/public-hostname', returnStdout: true)
         }
 
+        environment {
+          stage = "CI - Unit Test"
+        }
+
+        sh "echo ${stage}"
+        
         // Installing Node Dependencies Packages for Unit Test
         sh 'npm install'
         sh 'npm install pm2 -g'
