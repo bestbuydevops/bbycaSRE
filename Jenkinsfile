@@ -20,7 +20,7 @@ pipeline {
 
         //Setting Global Environments
         script {
-          public_dns = sh(curl -s http://169.254.169.254/latest/meta-data/public-hostname)
+          public_dns = sh(script: 'curl -s http://169.254.169.254/latest/meta-data/public-hostname', returnStdout: true)
         }
         
         sh "echo ${public_dns}"
