@@ -7,11 +7,6 @@ pipeline {
   //Specifying Tools 
   tools {nodejs "node"}
   
-  //Setting Global Environments
-  script {
-    public_dns = sh()
-  }
-  
   //CI_CD Pipeline Stages
   stages {
     
@@ -22,9 +17,14 @@ pipeline {
         slackSend (color: '#00FF00', message: "@channel *STARTED*: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.RUN_DISPLAY_URL})")
         
         sh 'env'
+
+        //Setting Global Environments
+        script {
+          public_dns = sh(curl -s http://169.254.169.254/latest/meta-data/public-hostname)
+        }
         
         sh "echo ${public_dns}"
-        
+
         // Installing Node Dependencies Packages for Unit Test
         sh 'npm install'
         sh 'npm install pm2 -g'
