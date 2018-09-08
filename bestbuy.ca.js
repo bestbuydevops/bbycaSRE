@@ -18,7 +18,7 @@ app.set('port', process.env.PORT || 8000);
 
 switch (process.env.ENV){
    case 'DEV': 
-	msg = 'Unleash the power of our people!'
+	msg = 'Unleash the power of our people!!'
 	break;
    case 'TEST':
 	msg = 'Show respect, humility and integrity'
