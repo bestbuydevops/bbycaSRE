@@ -16,14 +16,11 @@ pipeline {
         // First Slack Notification
         slackSend (color: '#00FF00', message: "@channel *STARTED*: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.RUN_DISPLAY_URL})")
         
-        sh 'env'
-
         //Setting Global Environments
         script {
           public_dns = sh(script: 'curl -s http://169.254.169.254/latest/meta-data/public-hostname', returnStdout: true)
         }
         
-        sh "echo ${public_dns}"
 
         // Installing Node Dependencies Packages for Unit Test
         sh 'npm install'
@@ -86,25 +83,25 @@ pipeline {
         sh "printf 'CD - Deploy DEV Container on Port 8091 \n\n'" 
         sh 'docker stop bestbuydevops-dev || true && docker rm -f bestbuydevops-dev || true'
         sh "docker run -dti -p 8091:8091 -e ENV=DEV -e PORT=8091 --name bestbuydevops-dev bestbuydevops/bbycasre_samuelbaruffi:latest"
-        slackSend (color: '#00FF00', message: "@channel *DEPLOYED:* Best Buy App (Samuel Baruffi) (ENV=DEV) (http://ec2-13-58-216-72.us-east-2.compute.amazonaws.com:8091)")
+        slackSend (color: '#00FF00', message: "@channel *DEPLOYED:* Best Buy App (Samuel Baruffi) (ENV=DEV) (http://${public_dns}:8091)")
 
         // Deploying Test Container
         sh "printf 'CD - Deploy TEST Container on Port 8092 \n\n'" 
         sh 'docker stop bestbuydevops-test || true && docker rm -f bestbuydevops-test || true'
         sh "docker run -dti -p 8092:8092 -e ENV=TEST -e PORT=8092 --name bestbuydevops-test bestbuydevops/bbycasre_samuelbaruffi:latest"
-        slackSend (color: '#00FF00', message: "@channel *DEPLOYED:* Best Buy App (Samuel Baruffi) (ENV=TEST) (http://ec2-13-58-216-72.us-east-2.compute.amazonaws.com:8092)")
+        slackSend (color: '#00FF00', message: "@channel *DEPLOYED:* Best Buy App (Samuel Baruffi) (ENV=TEST) (http://${public_dns}:8092)")
 
         // Deploying DR Container
         sh "printf 'CD - Deploy DR Container on Port 8093 \n\n'" 
         sh 'docker stop bestbuydevops-dr || true && docker rm -f bestbuydevops-dr || true'
         sh "docker run -dti -p 8093:8093 -e ENV=DR -e PORT=8093 --name bestbuydevops-dr bestbuydevops/bbycasre_samuelbaruffi:latest"
-        slackSend (color: '#00FF00', message: "@channel *DEPLOYED:* Best Buy App (Samuel Baruffi) (ENV=DR) (http://ec2-13-58-216-72.us-east-2.compute.amazonaws.com:8093)")
+        slackSend (color: '#00FF00', message: "@channel *DEPLOYED:* Best Buy App (Samuel Baruffi) (ENV=DR) (http://${public_dns}:8093)")
 
         // Deploying Prod Container
         sh "printf 'CD - Deploy PROD Container on Port 8094 \n\n'" 
         sh 'docker stop bestbuydevops-prod || true && docker rm -f bestbuydevops-prod || true'
         sh "docker run -dti -p 8094:8094 -e ENV=PROD -e PORT=8094 --name bestbuydevops-prod bestbuydevops/bbycasre_samuelbaruffi:latest"
-        slackSend (color: '#00FF00', message: "@channel *DEPLOYED:* Best Buy App (Samuel Baruffi) (ENV=PROD) (http://ec2-13-58-216-72.us-east-2.compute.amazonaws.com:8094)")
+        slackSend (color: '#00FF00', message: "@channel *DEPLOYED:* Best Buy App (Samuel Baruffi) (ENV=PROD) (http://e${public_dns}:8094)")
       }      
     }
   }
