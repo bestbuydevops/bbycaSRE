@@ -59,9 +59,9 @@ pipeline {
                 sh "printf 'Testing PROD env \n\n'"
                 sh 'pm2 start -f bestbuy.ca.js && npm test'
                 sh 'pm2 delete -f bestbuy.ca.js'
-        }
-      }
-    }
+         }
+       }
+     }
     
     // CI -  Docker Build
     stage('CI - Docker Build'){
@@ -135,7 +135,7 @@ pipeline {
         slackSend (color: '#00FF00', message: "@channel *DEPLOYED:* Best Buy App (Samuel Baruffi) (ENV=PROD) (http://${public_dns}:8094)")
       }      
     }
-  }
+   }
   
   //Post Functions Alerts/Notifications
   post {
