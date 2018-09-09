@@ -63,7 +63,7 @@ EOL
 
 git add bestbuy.ca.js
 git add README.md
-git commit -m "Triggering a build on the CI/CD pipeline for the Best Buy DevOps Assignment - Samuel Baruffi"
+git commit -m "Triggering a build on the CI/CD pipeline (Success Demo) for the Best Buy DevOps Assignment - Samuel Baruffi"
 git pull
 printf "\n\n\n"
 

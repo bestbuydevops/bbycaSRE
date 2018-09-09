@@ -3,7 +3,7 @@
 export public_dns=$(curl -s http://169.254.169.254/latest/meta-data/public-hostname)
 
 ### Print Welcome
-echo "Welcome To The Fail CI/CD Script Automation for the DevOps Best Buy Assignment - Samuel Baruffi"
+echo "Welcome To The CI/CD Script Automation (Force Fail Demo) for the DevOps Best Buy Assignment - Samuel Baruffi"
 printf "\n\n\n"
 sleep 5
 
@@ -63,7 +63,7 @@ sleep 5
 cd /home/ubuntu/bbycaSRE/
 git add README.md
 git add bestbuy.ca.js
-git commit -m "Triggering a build on the CI/CD pipeline for the Best Buy DevOps Assignment - Samuel Baruffi"
+git commit -m "Triggering a build on the CI/CD pipeline (Force Fail Demo) for the Best Buy DevOps Assignment - Samuel Baruffi"
 git pull
 printf "\n\n\n"
 
