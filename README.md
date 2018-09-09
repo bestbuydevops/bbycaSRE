@@ -17,7 +17,7 @@
 
 # **CI/CD Workflow**
 
- ![alt text](https://raw.githubusercontent.com/bestbuydevops/bbycaSRE/master/Best%20Buy%20DevOps%20CICD%20Workflow%20-%20Samuel%20Baruffi.jpg)
+ ![alt text](https://raw.githubusercontent.com/bestbuydevops/bbycaSRE/master/docs/Best%20Buy%20DevOps%20CICD%20Workflow%20-%20Samuel%20Baruffi.jpg)
 
 - The workflow is all built on Jenkins latest declarative pipeline ([https://jenkins.io/doc/book/pipeline/syntax/#declarative-pipeline](https://jenkins.io/doc/book/pipeline/syntax/#declarative-pipeline))
 - Every push to GitHub will trigger a build on CI/CD (via webhook to Jenkins)
