@@ -34,20 +34,20 @@
 
 The information presented below is all the important links, username and passwords that was required to create and run this assignment:
 
-- ****** Github Repo**
+- ** Github Repo**
   - [https://github.com/bestbuydevops/bbycaSRE](https://github.com/bestbuydevops/bbycaSRE)
-- **●●**** DockerHub Repo**
+- ** DockerHub Repo**
   - [https://hub.docker.com/r/bestbuydevops/bbycasre\_samuelbaruffi/](https://hub.docker.com/r/bestbuydevops/bbycasre_samuelbaruffi/)
-- **●●**** AWS EC2 Instance**
+- ** AWS EC2 Instance**
   - Public DNS: ec2-18-188-186-16.us-east-2.compute.amazonaws.com
   - Type: t2.small (1CPU, 2GB)
   - Key Par location: /bbycaSRE/aws/bestbuydevops.pem (included on this zip file, not part of github repo for security reasons)
-- **●●**** Slack**
+- ** Slack**
   - URL: [https://bestbuydevops.slack.com/](https://bestbuydevops.slack.com/)
-- **●●**** Jenkins**
+- ** Jenkins**
   - URL: [http://ec2-18-188-186-16.us-east-2.compute.amazonaws.com:8080/](http://ec2-18-188-186-16.us-east-2.compute.amazonaws.com:8080/)
   - URL Blue Ocean: [http://ec2-18-188-186-16.us-east-2.compute.amazonaws.com:8080/blue/](http://ec2-18-188-186-16.us-east-2.compute.amazonaws.com:8080/blue/)
-- **●●**** UpTimeRobot** (Simple Monitoring WebPage tool)
+- ** UpTimeRobot** (Simple Monitoring WebPage tool)
   - Public Dashboard: [https://stats.uptimerobot.com/qZpvDFKOR](https://stats.uptimerobot.com/qZpvDFKOR)
 
 # **Demo**
