@@ -1,3 +1,36 @@
+<<<<<<< HEAD
+# bbycaSRE_samuelbaruffi
+Best Buy CI/CD Assignment - Samuel Baruffi
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+=======
 # **Best Buy DevOps Assignment - Samuel Baruffi**
 
 # **Video Demo**
@@ -103,3 +136,7 @@ If you desire you can run again the &quot;SuccessfulCICD.sh&quot; pipeline to co
 - The EC2 t2.micro instance only has 1GB of RAM and running everything (Jenkins, Docker, NodeJS Apps containers and bash scripts) was not enough and it was taking a long time and sometimes crashing the process. Therefore, I have upgraded with a t2.small (2GB of RAM) and since there things have ran very smooth.
 - Running everything in docker, specially with Jenkins and deploying on the same docker created some interesting permissions and configurations problems that was solved by some bash scripts
 - Jenkins Declarative Pipeline was introduced no more than a year ago, therefore, it lacks a bit of documentation when trying to do more complex pipelines
+>>>>>>> 02e509b760a2855ea71cef37c546bbbfc21c2dbe
+ 
+ 
+ 
