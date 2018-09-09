@@ -1,3 +1,6 @@
+#Best Buy DevOps Assignment - Samuel Baruffi
+
+# Source Image
 FROM node:8
 
 # Create app directory
@@ -15,5 +18,8 @@ RUN npm install
 # Bundle app source
 COPY . .
 
+# Port to be exposed if not set on docker run
 EXPOSE 8080
+
+# Start NPM (will trigger node)
 CMD [ "npm", "start" ]
