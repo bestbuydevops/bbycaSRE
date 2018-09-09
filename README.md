@@ -19,7 +19,7 @@
 
  ![alt text](https://raw.githubusercontent.com/bestbuydevops/bbycaSRE/master/docs/Best%20Buy%20DevOps%20CICD%20Workflow%20-%20Samuel%20Baruffi.jpg)
 
-- The workflow is all built on Jenkins latest declarative pipeline ([https://jenkins.io/doc/book/pipeline/syntax/#declarative-pipeline](https://jenkins.io/doc/book/pipeline/syntax/#declarative-pipeline))
+- The workflow is all built on Jenkins latest declarative pipeline ([https://jenkins.io/doc/book/pipeline/syntax/#declarative-pipeline](https://jenkins.io/doc/book/pipeline/syntax/#declarative-pipeline)), you can check the file Jenkinsfile to check all the code for this CICD pipeline
 - Every push to GitHub will trigger a build on CI/CD (via webhook to Jenkins)
 - The CI Unit Test runs on Mocha module and it just checks to see if the string of each environment is correct to the original file (provided by Best Buy)
 - Everything is running on containers (even Jenkins Master)
