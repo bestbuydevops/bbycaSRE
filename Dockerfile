@@ -1,8 +1,5 @@
 #Best Buy DevOps Assignment - Samuel Baruffi
 
-# Set mantainer 
-LABEL maintainer="devopsbestbuy@gmail.com"
-
 # Source Image
 FROM node:8
 
