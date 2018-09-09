@@ -138,3 +138,4 @@ If you desire you can run again the &quot;SuccessfulCICD.sh&quot; pipeline to co
 - Jenkins Declarative Pipeline was introduced no more than a year ago, therefore, it lacks a bit of documentation when trying to do more complex pipelines
 >>>>>>> 02e509b760a2855ea71cef37c546bbbfc21c2dbe
  
+ 
