@@ -83,7 +83,7 @@ Now that you have everything opened and logged in, we can run our first bash dem
   - **DR:** [http://ec2-18-188-186-16.us-east-2.compute.amazonaws.com:8093/](http://ec2-18-188-186-16.us-east-2.compute.amazonaws.com:8093/)
   - **PROD:** [http://ec2-18-188-186-16.us-east-2.compute.amazonaws.com:8094/](http://ec2-18-188-186-16.us-east-2.compute.amazonaws.com:8094/)
 - On the SSH EC2 instance you can run
-  - ***Docker ps -a**
+  - **docker ps -a**
   - Check the &quot;Status&quot; column to confirm that the containers were recently deployed
 
 **Fail Push/Commit Demo:**
