@@ -34,7 +34,7 @@
 
 The information presented below is all the important links, username and passwords that was required to create and run this assignment:
 
-- **●●**** Github Repo**
+- ****** Github Repo**
   - [https://github.com/bestbuydevops/bbycaSRE](https://github.com/bestbuydevops/bbycaSRE)
 - **●●**** DockerHub Repo**
   - [https://hub.docker.com/r/bestbuydevops/bbycasre\_samuelbaruffi/](https://hub.docker.com/r/bestbuydevops/bbycasre_samuelbaruffi/)
