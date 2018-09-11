@@ -109,12 +109,6 @@ You can change any code within the **/home/ubuntu/bbycaSRE** folder in the AWS E
 - Running everything in docker, specially with Jenkins and deploying on the same docker created some interesting permissions and configurations problems that was solved by some bash scripts
 - Jenkins Declarative Pipeline was introduced no more than a year ago, therefore, it lacks a bit of documentation when trying to do more complex pipelines
 
- # **Challenges/Problems**
-
-- The first idea was to run containers on Minikube but unfortunately Minikube does not have a easy way to expose services (because it runs on a VM in NAT mode). Therefore, I decided to go with pure containers on Docker
-- The EC2 t2.micro instance only has 1GB of RAM and running everything (Jenkins, Docker, NodeJS Apps containers and bash scripts) was not enough and it was taking a long time and sometimes crashing the process. Therefore, I have upgraded with a t2.small (2GB of RAM) and since there things have ran very smooth.
-- Running everything in docker, specially with Jenkins and deploying on the same docker created some interesting permissions and configurations problems that was solved by some bash scripts
-- Jenkins Declarative Pipeline was introduced no more than a year ago, therefore, it lacks a bit of documentation when trying to do more complex pipelines
 
  
  
